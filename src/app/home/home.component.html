@@ -1,0 +1,43 @@
+<div class="ui text container">
+
+  <h2>Hi, {{getUserName()}}</h2>
+
+  <div *ngIf="isVolunteer()">
+
+    <p> Schön, dass du in dieser schwierigen Zeit helfen möchtest!  </p>
+
+    <a routerLink="../shoppingLists" class="ui button">
+
+      Jetzt helfen
+
+      <i class="right arrow icon"></i>
+
+    </a>
+  </div>
+
+  <div *ngIf="!isVolunteer()">
+
+    <p> Schön, dass du da bist. </p>
+
+    <div class="ui info message">
+      <div class="header">
+         Du brauchst Hilfe <i class="help icon "></i>
+      </div>
+      <ol class="ui ordered list">
+        <li>Erstelle eine Einkaufsliste mit Klick auf 'Einkaufsliste erstellen'</li>
+        <li>Füge Einkaufsartikel zu deiner Liste hinzu. </li>
+        <li>Klicke auf 'Speichern'. </li>
+        <li>Warte, bis ein Helfender die Einkaufsliste übernimmt </li>
+      </ol>
+    </div>
+
+    <a routerLink="../shoppingListForm" class="ui button">
+
+      Einkaufsliste erstellen
+
+      <i class="right arrow icon"></i>
+
+    </a>
+  </div>
+
+</div>
