@@ -2,7 +2,7 @@
   <h1> COVIDSTORE </h1>
   <a class="item" routerLink="home" routerLinkActive="active">   <i class="home icon"></i> Home</a>
 
-  <a *ngIf="isVolunteer()" class="item" routerLink="shoppingLists" routerLinkActive="active">   <i class="heart icon"></i> Einkauf übernehmen </a>
+  <a *ngIf="isVolunteer()" class="item" (listingChange)='showLists()' routerLink="shoppingLists" routerLinkActive="active">   <i class="heart icon"></i> Einkauf übernehmen </a>
 
   <a *ngIf="!isVolunteer()" class="item" routerLink="shoppingListForm" routerLinkActive="active">   <i class="plus icon"></i> Neue Liste anlegen</a>
 

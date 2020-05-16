@@ -1,9 +1,34 @@
 <div class="ui container internally celled grid">
   <div class="eight wide column">
     <h2> {{shoppingList?.name}}</h2>
-    <p class="date"> <i class="icon time"> </i> {{shoppingList?.due_date | date:'fullDate'}}</p>
+    <p class="info"><i class="icon time"> </i> {{shoppingList?.due_date | date:'fullDate'}}</p>
+    <div *ngIf="!isHelpseeker()">
+      <p class="info"><i class="icon user outline"> </i> {{shoppingList?.helpseeker.first_name}}
+        {{shoppingList?.helpseeker.last_name}}</p>
+      <p class="info"><i class="icon home"> </i> {{shoppingList?.helpseeker.address}}</p>
+    </div>
     <div class="ui relaxed divided list">
       <div *ngFor="let item of shoppingList?.shopping_items" [item]="item" class="item cs-shopping-list-item">
+      </div>
+    </div>
+    <div *ngIf="isHelpseeker()">
+      <div *ngIf="volunteerIsSet() && shoppingList.total_price == null" class="ui teal message"><i
+        class="exclamation icon"> </i>Einkauf von {{shoppingList.volunteer.first_name}}
+        {{shoppingList.volunteer.last_name}} übernommen
+      </div>
+      <div *ngIf="volunteerIsSet() && shoppingList.total_price !== null" class="ui green message"><i
+        class="exclamation icon"> </i>Einkauf abgeschlossen. Der Gesamtpreis beträgt {{shoppingList.total_price}}€
+      </div>
+      <div *ngIf="!volunteerIsSet()" class="ui red message"><i class="exclamation icon"> </i>Einkauf noch nicht
+        übernommen.
+      </div>
+    </div>
+
+    <div *ngIf="!isHelpseeker() && shoppingList?.done == false" class="ui action input">
+      <input placeholder="Gesamtpreis €" type="number" class="field" [(ngModel)]="totalPrice"
+             [ngModelOptions]="{standalone: true}" name="totalPrice">
+      <div (click)="finishList(totalPrice)" class="ui teal right labeled icon button">
+        Einkauf abschließen
       </div>
     </div>
   </div>
@@ -13,7 +38,7 @@
     </div>
     <form class="ui reply form">
       <div class="field">
-        <textarea [(ngModel)]="comment" [ngModelOptions]="{standalone: true}"></textarea>
+        <textarea [(ngModel)]="comment" [ngModelOptions]="{standalone: true}" name="comment"></textarea>
       </div>
       <div (click)="addComment(comment)" class="ui labeled submit icon button">
         <i class="icon pencil alternate"></i> Kommentieren

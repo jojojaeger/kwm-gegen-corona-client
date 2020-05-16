@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   openLists: ShoppingList[];
   doneLists: ShoppingList[];
 
-  constructor(private router: Router, private shoppingListServive:ShoppingListService, private authService:AuthService){
+  constructor(private router: Router, private shoppingListService:ShoppingListService, private authService:AuthService){
   }
 
   isLoggedIn(){
@@ -34,10 +34,10 @@ export class AppComponent implements OnInit{
     this.authService.getLoggedInUserId.subscribe(() => this.showLists());
   }
 
-  private showLists(): void {
+  showLists(): void {
     if (this.isLoggedIn()){
-      this.shoppingListServive.getOpen(localStorage.userId).subscribe(res => this.openLists = res);
-      this.shoppingListServive.getDone(localStorage.userId).subscribe(res => this.doneLists = res);
+      this.shoppingListService.getOpen(localStorage.userId).subscribe(res => this.openLists = res);
+      this.shoppingListService.getDone(localStorage.userId).subscribe(res => this.doneLists = res);
     }
   }
 

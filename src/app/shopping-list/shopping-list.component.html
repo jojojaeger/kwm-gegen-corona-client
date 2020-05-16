@@ -1,1 +1,19 @@
-<p> Name, Helpseeker Name ÜBERNEHMEN Button</p>
+<div class="content">
+  <div class="header">
+    {{shoppingList.name}}
+  </div>
+  <div class="meta">
+    <p>Items: {{shoppingList?.shopping_items.length}}</p>
+  </div>
+  <div class="description">
+    <p><i class="icon time"> </i> {{shoppingList?.due_date | date:'fullDate'}}</p>
+    <p><i class="icon user outline"> </i> {{shoppingList?.helpseeker.first_name}}
+      {{shoppingList?.helpseeker.last_name}}</p>
+    <p><i class="icon home"> </i> {{shoppingList?.helpseeker.address}}</p>
+  </div>
+</div>
+<div class="extra content">
+  <div class="ui two buttons">
+    <div (click)="acceptList()" class="ui teal green button">Übernehmen</div>
+  </div>
+</div>

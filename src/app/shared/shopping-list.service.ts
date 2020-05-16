@@ -45,6 +45,11 @@ export class ShoppingListService {
       .pipe(catchError(this.errorHandler));
   }
 
+  update(list: ShoppingList):Observable<any> {
+    return this.http.put(`${this.api}/shoppingList/${list.id}`, list).pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
   private errorHandler(error : Error | any):Observable<any>{
     return throwError(error);
   }

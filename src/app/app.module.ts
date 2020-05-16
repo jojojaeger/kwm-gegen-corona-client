@@ -15,6 +15,7 @@ import { ShoppingListFormComponent } from './shopping-list-form/shopping-list-fo
 import { ShoppingListListingComponent } from './shopping-list-listing/shopping-list-listing.component';
 import { ShoppingListItemComponent } from './shopping-list-item/shopping-list-item.component';
 import { CommentComponent } from './comment/comment.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
