@@ -5,7 +5,7 @@ import {Feedback, ShoppingList, ShoppingListItem} from "./shared/shoppingList" ;
 import {ShoppingListService} from "./shared/shopping-list.service";
 
 @Component({
-  selector: 'bs-root',
+  selector: 'cs-root',
   templateUrl:'./app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -31,13 +31,13 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.showLists();
-    this.authService.getLoggedInName.subscribe(() => this.showLists());
+    this.authService.getLoggedInUserId.subscribe(() => this.showLists());
   }
 
   private showLists(): void {
     if (this.isLoggedIn()){
-      this.shoppingListServive.getOpen().subscribe(res => this.openLists = res);
-      this.shoppingListServive.getDone().subscribe(res => this.doneLists = res);
+      this.shoppingListServive.getOpen(localStorage.userId).subscribe(res => this.openLists = res);
+      this.shoppingListServive.getDone(localStorage.userId).subscribe(res => this.doneLists = res);
     }
   }
 

@@ -25,18 +25,23 @@ export class ShoppingListService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getOpen():Observable<Array<ShoppingList>> {
-    return this.http.get(`${this.api}/shoppingLists/open/${localStorage.userId}`).pipe(retry(3))
+  getSingleList(id: number):Observable<ShoppingList> {
+    return this.http.get(`${this.api}/shoppingList/${id}`).pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
 
-  getDone():Observable<Array<ShoppingList>> {
-    return this.http.get(`${this.api}/shoppingLists/done/${localStorage.userId}`).pipe(retry(3))
+  getOpen(userId: number):Observable<Array<ShoppingList>> {
+    return this.http.get(`${this.api}/shoppingLists/open/${userId}`).pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
 
-  getSingle(isbn: string): Observable<ShoppingList> {
-    return this.http.get(`${this.api}/books/${isbn}`).pipe(retry(3))
+  getDone(userId: number):Observable<Array<ShoppingList>> {
+    return this.http.get(`${this.api}/shoppingLists/done/${userId}`).pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
+  createFeedback(feedback: Feedback):Observable<Feedback> {
+    return this.http.post(`${this.api}/shoppingList/feedback`, feedback).pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
 

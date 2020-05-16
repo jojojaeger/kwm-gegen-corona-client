@@ -1,9 +1,10 @@
 <div class="ui sidebar left visible vertical menu"*ngIf="isLoggedIn()">
+  <h1> COVIDSTORE </h1>
   <a class="item" routerLink="home" routerLinkActive="active">   <i class="home icon"></i> Home</a>
 
-  <a *ngIf="isVolunteer()" class="item" routerLink="home" routerLinkActive="active">   <i class="heart icon"></i> Einkauf übernehmen </a>
+  <a *ngIf="isVolunteer()" class="item" routerLink="shoppingLists" routerLinkActive="active">   <i class="heart icon"></i> Einkauf übernehmen </a>
 
-  <a *ngIf="!isVolunteer()" class="item" routerLink="home" routerLinkActive="active">   <i class="plus icon"></i> Neue Liste anlegen</a>
+  <a *ngIf="!isVolunteer()" class="item" routerLink="shoppingListForm" routerLinkActive="active">   <i class="plus icon"></i> Neue Liste anlegen</a>
 
   <p class="item">   <i class="user icon"></i> Meine Listen </p>
   <a *ngFor="let list of openLists" routerLink="shoppingList/{{list.id}}" class="item shoppingList" routerLinkActive="active"> <i class="bars icon"></i> {{list.name}}</a>

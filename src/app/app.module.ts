@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms' ;
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -12,6 +12,9 @@ import {HomeComponent} from "./home/home.component";
 import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 import { ShoppingListDetailComponent } from './shopping-list-detail/shopping-list-detail.component';
 import { ShoppingListFormComponent } from './shopping-list-form/shopping-list-form.component';
+import { ShoppingListListingComponent } from './shopping-list-listing/shopping-list-listing.component';
+import { ShoppingListItemComponent } from './shopping-list-item/shopping-list-item.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { ShoppingListFormComponent } from './shopping-list-form/shopping-list-fo
     LoginComponent,
     ShoppingListDetailComponent,
     ShoppingListFormComponent,
+    ShoppingListListingComponent,
+    ShoppingListItemComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,7 @@ import { ShoppingListFormComponent } from './shopping-list-form/shopping-list-fo
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  },
+  },[{provide: LOCALE_ID, useValue: 'de'}],
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,

@@ -1,23 +1,21 @@
+import {AuthService} from "../shared/auth";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'home',
-  template: `
-      <div class="ui container">
-
-          <h1>Home</h1>
-
-          <p>Das ist der KWM GEGEN CORONA Store</p>
-
-      </div>
-  `,
-  styles: []
+  selector: 'cs-home',
+  templateUrl: './home.component.html',
+  styles: ['.ui.container {padding-top: 50px !important;; margin-left: 150px !important;}']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent{
 
   constructor() { }
 
-  ngOnInit(): void {
+  getUserName(){
+    return localStorage.name;
+  }
+
+  isVolunteer(){
+    return localStorage.role == "volunteer";
   }
 
 }

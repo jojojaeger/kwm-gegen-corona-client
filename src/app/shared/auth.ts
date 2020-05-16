@@ -2,25 +2,13 @@ import {EventEmitter, Injectable, Output} from '@angular/core' ;
 import {HttpClient} from "@angular/common/http" ;
 import * as decode from 'jwt-decode' ;
 
-interface User {
-  result : {
-    created_at : Date,
-    email : string,
-    id : number,
-    first_name : string,
-    last_name: string,
-    address:string,
-    type:string,
-    updated_at : Date
-  }
-}
 @ Injectable ()
 export class AuthService {
 
   private api:string =
     'http://covidstore.s1710456013.student.kwmhgb.at/api/auth';
 
-  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
+  @Output() getLoggedInUserId: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) {
   }
@@ -34,12 +22,14 @@ export class AuthService {
     localStorage.setItem('token' , token);
     localStorage.setItem('userId' , decodedToken.user.id );
     localStorage.setItem('role' , decodedToken.user.role);
-    this.getLoggedInName.emit(localStorage.userId);
+    localStorage.setItem('name' , decodedToken.user.name);
+    this.getLoggedInUserId.emit(localStorage.userId);
   }
   logout () {this.http.post ( ` ${this.api } /logout` , {});
     localStorage.removeItem ( "token" );
     localStorage.removeItem ( "userId" );
     localStorage.removeItem ( "role" );
+    localStorage.removeItem ( "name" );
   }
   public isLoggedIn () {
     if(localStorage.getItem ("token" )){

@@ -1,1 +1,24 @@
-<p>hahahhhhhhh get the details !</p>
+<div class="ui container internally celled grid">
+  <div class="eight wide column">
+    <h2> {{shoppingList?.name}}</h2>
+    <p class="date"> <i class="icon time"> </i> {{shoppingList?.due_date | date:'fullDate'}}</p>
+    <div class="ui relaxed divided list">
+      <div *ngFor="let item of shoppingList?.shopping_items" [item]="item" class="item cs-shopping-list-item">
+      </div>
+    </div>
+  </div>
+  <div class="four wide column">
+    <h2> Kommentare </h2>
+    <div *ngFor="let feedback of shoppingList?.feedback" [comment]="feedback" class=" ui comments cs-comment">
+    </div>
+    <form class="ui reply form">
+      <div class="field">
+        <textarea [(ngModel)]="comment" [ngModelOptions]="{standalone: true}"></textarea>
+      </div>
+      <div (click)="addComment(comment)" class="ui labeled submit icon button">
+        <i class="icon pencil alternate"></i> Kommentieren
+      </div>
+    </form>
+  </div>
+</div>
+

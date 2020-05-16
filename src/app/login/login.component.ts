@@ -12,9 +12,9 @@ interface Response {
 }
 
 @Component({
-  selector: 'login',
+  selector: 'cs-login',
   templateUrl: './login.component.html',
-  styles: ['.ui.grid { height: 100vh; width: 100%; }']
+  styles: ['.ui.grid { height: 100vh; background-color: rgba(95, 158, 160, 0.4); }']
 })
 export class LoginComponent implements OnInit {
 
