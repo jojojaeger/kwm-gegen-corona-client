@@ -14,7 +14,7 @@ interface Response {
 @Component({
   selector: 'cs-login',
   templateUrl: './login.component.html',
-  styles: ['.ui.grid { height: 100vh; background-color: rgba(95, 158, 160, 0.4); }']
+  styles: ['.ui.grid { height: 100vh; background-color: cadetblue; color: white; } .ui label{color: white;}']
 })
 export class LoginComponent implements OnInit {
 

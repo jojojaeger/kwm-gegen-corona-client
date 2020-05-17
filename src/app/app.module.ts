@@ -16,6 +16,7 @@ import { ShoppingListListingComponent } from './shopping-list-listing/shopping-l
 import { ShoppingListItemComponent } from './shopping-list-item/shopping-list-item.component';
 import { CommentComponent } from './comment/comment.component';
 import {RouterModule} from "@angular/router";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import {RouterModule} from "@angular/router";
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, {
+  providers: [AuthService, DatePipe, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

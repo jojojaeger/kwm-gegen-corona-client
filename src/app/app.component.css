@@ -1,6 +1,13 @@
 h1{
-  padding-left: 20px;
-  padding-top: 5px;
+  font-size: 14px;
+  color: grey;
+  font-weight: lighter;
+  padding: 5px 0 0 5px;
+}
+
+.userName{
+  padding-left: 23px;
+  font-size: 16px;
 }
 
 .ui.sidebar p{

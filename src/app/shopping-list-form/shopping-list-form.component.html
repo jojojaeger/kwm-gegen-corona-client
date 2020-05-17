@@ -1,1 +1,40 @@
-<p>shopping-list-form works!</p>
+<div class="ui container">
+  <form class="ui large form" [formGroup]="shoppingListForm" (ngSubmit)="submitForm()">
+
+    <div class="formFields">
+      <input type="hidden" name="id">
+      <div class="field">
+        <input onClick="this.select();" class="ui listName" formControlName="name">
+      </div>
+      <div class="field">
+        <label>Fälligkeitsdatum</label>
+        <input type="date" min="{{minDate}}" formControlName="due_date">
+      </div>
+      <div class="ui section divider"></div>
+      <div class="ui relaxed divided list">
+        <div class="item cs-shopping-list-item" *ngFor="let arrayItem of itemsArray;" [item]="arrayItem">
+        </div>
+      </div>
+    </div>
+
+    <div class="ui newItem">
+      <div class="inline fields">
+        <button class="circular ui icon button" (click)="addItem()" [disabled]="itemPropsInvalid()">
+          <i class="icon plus"></i>
+        </button>
+        <div class="eight wide field">
+          <input type="text" formControlName="itemDescription" placeholder="Artikel hinzufügen">
+        </div>
+        <div class="three wide field">
+          <i class="icon cubes large disabled"></i><input formControlName="itemAmount" type="number" placeholder="Anzahl">
+        </div>
+        <div class="three wide field">
+          <i class="icon euro sign large sign disabled"></i><input formControlName="itemPrice" type="number" placeholder="Max">
+        </div>
+      </div>
+      <div *ngIf="errors.itemDescription" class="ui negative message">{{ errors.itemDescription }}</div>
+      <div *ngIf="errors.itemPrice" class="ui negative message">{{ errors.itemPrice }}</div>
+      <div *ngIf="errors.itemAmount" class="ui negative message">{{ errors.itemAmount }}</div>
+    </div>
+  </form>
+</div>

@@ -8,8 +8,6 @@ export class AuthService {
   private api:string =
     'http://covidstore.s1710456013.student.kwmhgb.at/api/auth';
 
-  @Output() getLoggedInUserId: EventEmitter<any> = new EventEmitter();
-
   constructor(private http: HttpClient) {
   }
   login (email: string, password: string ) {
@@ -22,14 +20,15 @@ export class AuthService {
     localStorage.setItem('token' , token);
     localStorage.setItem('userId' , decodedToken.user.id );
     localStorage.setItem('role' , decodedToken.user.role);
-    localStorage.setItem('name' , decodedToken.user.name);
-    this.getLoggedInUserId.emit(localStorage.userId);
+    localStorage.setItem('first_name' , decodedToken.user.first_name);
+    localStorage.setItem('last_name' , decodedToken.user.last_name);
   }
   logout () {this.http.post ( ` ${this.api } /logout` , {});
     localStorage.removeItem ( "token" );
     localStorage.removeItem ( "userId" );
     localStorage.removeItem ( "role" );
-    localStorage.removeItem ( "name" );
+    localStorage.removeItem ( "first_name" );
+    localStorage.removeItem ( "last_name" );
   }
   public isLoggedIn () {
     if(localStorage.getItem ("token" )){
@@ -45,8 +44,5 @@ export class AuthService {
     } else {
       return false;
     }
-  }
-  isLoggedOut () {
-    return !this.isLoggedIn ();
   }
 }

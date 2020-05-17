@@ -11,34 +11,27 @@ import {ShoppingListService} from "./shared/shopping-list.service";
 })
 export class AppComponent implements OnInit{
 
-  openLists: ShoppingList[];
-  doneLists: ShoppingList[];
-
-  constructor(private router: Router, private shoppingListService:ShoppingListService, private authService:AuthService){
+  constructor(private router: Router, public shoppingListService:ShoppingListService, private authService:AuthService){
   }
 
-  isLoggedIn(){
+  ngOnInit():void{
+    this.shoppingListService.updateDashboard();
+  }
+
+  get username():string{
+    return localStorage.first_name + ' ' + localStorage.last_name;
+  }
+
+  isLoggedIn():boolean{
     return this.authService.isLoggedIn();
   }
 
-  isVolunteer(){
+  isVolunteer():boolean{
     return localStorage.role == "volunteer";
   }
 
-  logout (){
+  logout ():void{
     this.authService.logout();
-  }
-
-  ngOnInit(){
-    this.showLists();
-    this.authService.getLoggedInUserId.subscribe(() => this.showLists());
-  }
-
-  showLists(): void {
-    if (this.isLoggedIn()){
-      this.shoppingListService.getOpen(localStorage.userId).subscribe(res => this.openLists = res);
-      this.shoppingListService.getDone(localStorage.userId).subscribe(res => this.doneLists = res);
-    }
   }
 
 }

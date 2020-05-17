@@ -11,12 +11,12 @@ export class ShoppingList {
     public due_date: Date,
     public done: boolean,
     public helpseeker_id: number,
-    public helpseeker: User,
     public shopping_items: ShoppingListItem[],
     public volunteer_id?: number,
     public total_price?: number,
     public feedback?: Feedback[],
     public volunteer?: User,
+    public helpseeker?: User,
   )
   {}
 }

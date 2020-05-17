@@ -10,8 +10,11 @@ import {registerLocaleData} from "@angular/common";
   selector: 'cs-shopping-list-detail',
   templateUrl: './shopping-list-detail.component.html',
   styles: [`.ui.container {
-    padding: 50px 0 !important;
-    margin: 0 130px !important;
+    padding: 50px 130px;
+    margin: 0 !important;
+    background-color: cadetblue;
+    height: 100vh;
+    color: white;
   }
 
   .ui textarea {
@@ -45,20 +48,26 @@ export class ShoppingListDetailComponent implements OnInit {
   }
 
   finishList($price: number) {
-    if ($price !== 0.00 && $price !== undefined && this.isFloat($price)) {
+    if ($price > 0.00 && $price !== undefined && this.isNumber($price)) {
       this.shoppingList.done = true;
       this.shoppingList.total_price = $price;
       this.shoppingListService.update(this.shoppingList).subscribe(() => {
         this.getList();
+        this.shoppingListService.updateDashboard();
       });
     }
     else {
-      alert("Bitte gib den Gesamtpreis an! Format: 23.99")
+      alert("Bitte gib den Gesamtpreis in Form einer positiven Zahl an!")
     }
   }
 
-  isFloat(n) {
-    return Number(n) === n && n % 1 !== 0;
+
+
+  isNumber(value: string | number): boolean
+  {
+    return ((value != null) &&
+      (value !== '') &&
+      !isNaN(Number(value.toString())));
   }
 
   getList() {

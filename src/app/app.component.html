@@ -1,16 +1,17 @@
 <div class="ui sidebar left visible vertical menu"*ngIf="isLoggedIn()">
-  <h1> COVIDSTORE </h1>
+  <h1> Covidstore </h1>
+  <h2 class="userName"> {{username}} </h2>
   <a class="item" routerLink="home" routerLinkActive="active">   <i class="home icon"></i> Home</a>
 
-  <a *ngIf="isVolunteer()" class="item" (listingChange)='showLists()' routerLink="shoppingLists" routerLinkActive="active">   <i class="heart icon"></i> Einkauf übernehmen </a>
+  <a *ngIf="isVolunteer()" class="item" routerLink="shoppingLists" routerLinkActive="active">   <i class="heart icon"></i> Einkauf übernehmen </a>
 
   <a *ngIf="!isVolunteer()" class="item" routerLink="shoppingListForm" routerLinkActive="active">   <i class="plus icon"></i> Neue Liste anlegen</a>
 
-  <p class="item">   <i class="user icon"></i> Meine Listen </p>
-  <a *ngFor="let list of openLists" routerLink="shoppingList/{{list.id}}" class="item shoppingList" routerLinkActive="active"> <i class="bars icon"></i> {{list.name}}</a>
+  <p class="item">   <i class="user icon"></i> Meine offene Listen </p>
+  <a *ngFor="let list of shoppingListService.openLists$ | async" routerLink="shoppingList/{{list.id}}" class="item shoppingList" routerLinkActive="active"> <i class="bars icon"></i> {{list.name}}</a>
 
   <p class="item">  <i class="calendar check outline icon"> </i> Erledigt </p>
-  <a *ngFor="let list of doneLists " routerLink="shoppingList/{{list.id}}" class="item shoppingList" routerLinkActive="active"> <i class="bars icon"></i>{{list.name}}</a>
+  <a *ngFor="let list of shoppingListService.doneLists$ | async " routerLink="shoppingList/{{list.id}}" class="item shoppingList" routerLinkActive="active"> <i class="bars icon"></i>{{list.name}}</a>
 
   <a (click)="logout()" class="item" routerLink="login" routerLinkActive="active"><i class="logout icon"></i> Logout</a>
 </div>

@@ -6,7 +6,7 @@
     <p>Items: {{shoppingList?.shopping_items.length}}</p>
   </div>
   <div class="description">
-    <p><i class="icon time"> </i> {{shoppingList?.due_date | date:'fullDate'}}</p>
+    <p><i class="icon bell outline"> </i> {{shoppingList?.due_date | date:'fullDate'}}</p>
     <p><i class="icon user outline"> </i> {{shoppingList?.helpseeker.first_name}}
       {{shoppingList?.helpseeker.last_name}}</p>
     <p><i class="icon home"> </i> {{shoppingList?.helpseeker.address}}</p>

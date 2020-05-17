@@ -1,9 +1,9 @@
 <div class="ui container">
-  <h1> Übernimm Einkäufe für Andere! </h1>
+  <h1> Unterstütze andere beim Einkaufen! </h1>
 
   <i *ngIf="shoppingLists.length == 0">Keine offenen Einkaufslisten vorhanden. </i>
   <div class="ui cards">
-    <div (listingChange)='getAllLists()' *ngFor="let list of shoppingLists" [shoppingList]="list" class="card cs-shopping-list">
+    <div *ngFor="let list of shoppingLists" [shoppingList]="list" class="card cs-shopping-list" (updateListing)="getAllLists()">
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="ui container internally celled grid">
   <div class="eight wide column">
     <h2> {{shoppingList?.name}}</h2>
-    <p class="info"><i class="icon time"> </i> {{shoppingList?.due_date | date:'fullDate'}}</p>
+    <p class="info"><i class="icon bell outline"> </i> {{shoppingList?.due_date | date:'fullDate'}}</p>
     <div *ngIf="!isHelpseeker()">
       <p class="info"><i class="icon user outline"> </i> {{shoppingList?.helpseeker.first_name}}
         {{shoppingList?.helpseeker.last_name}}</p>
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div *ngIf="isHelpseeker()">
-      <div *ngIf="volunteerIsSet() && shoppingList.total_price == null" class="ui teal message"><i
+      <div *ngIf="volunteerIsSet() && shoppingList.total_price == null" class="ui grey message"><i
         class="exclamation icon"> </i>Einkauf von {{shoppingList.volunteer.first_name}}
         {{shoppingList.volunteer.last_name}} übernommen
       </div>
@@ -32,7 +32,7 @@
       </div>
     </div>
   </div>
-  <div class="four wide column">
+  <div class="five wide column">
     <h2> Kommentare </h2>
     <div *ngFor="let feedback of shoppingList?.feedback" [comment]="feedback" class=" ui comments cs-comment">
     </div>
