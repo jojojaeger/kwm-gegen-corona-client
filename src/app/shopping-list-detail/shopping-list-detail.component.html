@@ -13,24 +13,25 @@
     </div>
     <div *ngIf="isHelpseeker()">
       <div *ngIf="volunteerIsSet() && shoppingList.total_price == null" class="ui grey message"><i
-        class="exclamation icon"> </i>Einkauf von {{shoppingList.volunteer.first_name}}
+        class="user icon"> </i>Einkauf von {{shoppingList.volunteer.first_name}}
         {{shoppingList.volunteer.last_name}} übernommen
       </div>
-      <div *ngIf="volunteerIsSet() && shoppingList.total_price !== null" class="ui green message"><i
-        class="exclamation icon"> </i>Einkauf abgeschlossen. Der Gesamtpreis beträgt {{shoppingList.total_price}}€
+      <div *ngIf="volunteerIsSet() && shoppingList.total_price !== null" class="ui grey message"><i
+        class="check icon"> </i>Einkauf abgeschlossen. Der Gesamtpreis beträgt {{shoppingList.total_price}}€
       </div>
       <div *ngIf="!volunteerIsSet()" class="ui red message"><i class="exclamation icon"> </i>Einkauf noch nicht
-        übernommen.
+        übernommen
       </div>
     </div>
 
     <div *ngIf="!isHelpseeker() && shoppingList?.done == false" class="ui action input">
-      <input placeholder="Gesamtpreis €" type="number" class="field" [(ngModel)]="totalPrice"
-             [ngModelOptions]="{standalone: true}" name="totalPrice">
-      <div (click)="finishList(totalPrice)" class="ui teal right labeled icon button">
-        Einkauf abschließen
+      <input placeholder="Gesamtpreis €" type="number" class="field"
+             [(ngModel)]="totalPrice" [ngModelOptions]="{standalone: true}" name="totalPrice">
+      <div (click)="finishList(totalPrice)" class="ui button">
+         Einkauf abschließen
       </div>
     </div>
+    <div *ngIf=" !isHelpseeker() && errors.price" class="ui negative message">{{ errors.price}}</div>
   </div>
   <div class="five wide column">
     <h2> Kommentare </h2>
@@ -44,6 +45,7 @@
         <i class="icon pencil alternate"></i> Kommentieren
       </div>
     </form>
+    <div *ngIf="errors.comment" class="ui negative message">{{ errors.comment }}</div>
   </div>
 </div>
 

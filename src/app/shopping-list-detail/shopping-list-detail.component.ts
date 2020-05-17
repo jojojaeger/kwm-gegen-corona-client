@@ -9,39 +9,30 @@ import {registerLocaleData} from "@angular/common";
 @Component({
   selector: 'cs-shopping-list-detail',
   templateUrl: './shopping-list-detail.component.html',
-  styles: [`.ui.container {
-    padding: 50px 130px;
-    margin: 0 !important;
-    background-color: cadetblue;
-    height: 100vh;
-    color: white;
-  }
-
-  .ui textarea {
-    height: unset
-  }`]
+  styleUrls: ['./shopping-list-detail.component.css']
 })
 export class ShoppingListDetailComponent implements OnInit {
 
   shoppingList: ShoppingList;
   comment: string;
   totalPrice: number;
+  errors: { [key: string]: string } = {};
 
   constructor(private router: Router, private shoppingListService: ShoppingListService, private route: ActivatedRoute,) {
     registerLocaleData(localeDe);
   }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.route.params.subscribe(() => {
       this.getList();
     });
   }
 
-  isHelpseeker() {
+  isHelpseeker():boolean {
     return localStorage.role == "helpseeker";
   }
 
-  volunteerIsSet?() {
+  volunteerIsSet():boolean {
     if (this.shoppingList !== undefined) {
       return this.shoppingList?.volunteer_id !== null;
     }
@@ -55,13 +46,12 @@ export class ShoppingListDetailComponent implements OnInit {
         this.getList();
         this.shoppingListService.updateDashboard();
       });
+      this.errors["price"] = "";
     }
     else {
-      alert("Bitte gib den Gesamtpreis in Form einer positiven Zahl an!")
+      this.errors["price"] = "Der Gesamtpreis muss angegeben werden und darf nur positive Zahlen enthalten";
     }
   }
-
-
 
   isNumber(value: string | number): boolean
   {
@@ -76,12 +66,13 @@ export class ShoppingListDetailComponent implements OnInit {
   }
 
   addComment($comment: string) {
-    if ($comment !== "") {
+    if ($comment !== "" && $comment !== undefined && $comment !== null) {
       let $feedback = new Feedback(null, localStorage.userId, this.shoppingList.id, $comment, null);
       this.shoppingListService.createFeedback($feedback).subscribe(() => {
         this.getList();
       });
+      this.errors["comment"] = "";
       this.comment = "";
-    } else alert("Ein Kommentar darf nicht leer sein.")
+    } else this.errors["comment"] = "Das Kommentarfeld darf nicht leer sein";
   }
 }

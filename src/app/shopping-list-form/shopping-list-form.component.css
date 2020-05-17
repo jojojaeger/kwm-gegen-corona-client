@@ -34,6 +34,7 @@
 
 .ui .formFields{
   justify-content: normal;
+  overflow: auto;
 }
 
 .ui .newItem{
@@ -43,7 +44,7 @@
 }
 
 .ui .newItem .inline{
-  padding: 15px 0 0 15px;
+  padding: 10px;
 }
 
 .ui .inline input{
@@ -81,4 +82,8 @@
 
 .ui .circular{
   margin-right: 10px;
+}
+
+.ui .submit{
+  width: 20%;
 }

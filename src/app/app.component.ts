@@ -1,7 +1,6 @@
 import {AuthService} from "./shared/auth";
 import {ActivatedRoute, Params, Router} from '@angular/router'
-import {Component, OnInit, Output, EventEmitter, OnDestroy} from '@angular/core';
-import {Feedback, ShoppingList, ShoppingListItem} from "./shared/shoppingList" ;
+import {Component, OnInit, Output} from '@angular/core';
 import {ShoppingListService} from "./shared/shopping-list.service";
 
 @Component({

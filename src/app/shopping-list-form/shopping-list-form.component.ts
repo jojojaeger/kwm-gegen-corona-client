@@ -52,16 +52,16 @@ export class ShoppingListFormComponent implements OnInit {
       this.shoppingListForm.value.itemAmount, this.shoppingListForm.value.itemPrice);
     this.itemsArray.push($item);
     this.shoppingListForm.get('itemDescription').reset();
-    this.shoppingListForm.get('itemAmount').reset();
+    this.shoppingListForm.get('itemAmount').reset(1);
     this.shoppingListForm.get('itemPrice').reset();
   }
 
-  itemPropsInvalid() {
+  itemPropsInvalid():boolean {
     return this.shoppingListForm.get('itemDescription').valid == false || this.shoppingListForm.get('itemAmount').valid == false
       || this.shoppingListForm.get('itemPrice').valid == false;
   }
 
-  shoppingListPropsInvalid() {
+  shoppingListPropsInvalid():boolean {
     return this.shoppingListForm.get('name').valid == false || this.shoppingListForm.get('due_date').valid == false
       || this.itemsArray.length == 0;
   }
@@ -69,13 +69,21 @@ export class ShoppingListFormComponent implements OnInit {
   submitForm() {
     const shoppingList: ShoppingList = new ShoppingList(this.shoppingListForm.value.id,
       this.shoppingListForm.value.name,this.shoppingListForm.value.due_date, false, localStorage.userId,
-      this.shoppingListForm.value.shopping_items);
-    console.log(shoppingList);
+      this.itemsArray);
 
-    // this.shoppingListService.create(shoppingList).subscribe(res => {
-    //   this.shoppingListForm.reset();
-    //   this.router.navigate([`../shoppingLists/${shoppingList.id}`]);
-    // });
+    this.shoppingListService.save(shoppingList).subscribe(res => {
+      this.resetForm();
+      this.shoppingListService.updateDashboard();
+    });
+  }
+
+  resetForm(){
+    this.shoppingListForm.get('itemDescription').reset();
+    this.shoppingListForm.get('name').reset('Einkaufsliste');
+    this.shoppingListForm.get('due_date').reset('');
+    this.shoppingListForm.get('itemAmount').reset(1);
+    this.shoppingListForm.get('itemPrice').reset();
+    this.itemsArray = [];
   }
 
   showErrors() {

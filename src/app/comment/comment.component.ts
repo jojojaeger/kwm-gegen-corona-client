@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ShoppingListItem} from "../shared/shoppingListItem";
 import {Feedback} from "../shared/feedback";
 
 @Component({

@@ -3,7 +3,6 @@ import {ShoppingListItem, Feedback, ShoppingList} from './shoppingList';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable, pipe, throwError} from "rxjs";
 import {catchError, retry} from "rxjs/operators";
-import {AuthService} from "./auth";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +16,7 @@ export class ShoppingListService {
   readonly openLists$ = this._openLists.asObservable();
   readonly doneLists$ = this._doneLists.asObservable();
 
-  constructor(private http: HttpClient, private authService: AuthService) {
-  }
+  constructor(private http: HttpClient) {}
 
   get openLists(): ShoppingList[] {
     return this._openLists.getValue();
@@ -37,7 +35,7 @@ export class ShoppingListService {
   }
 
   updateDashboard(): void {
-    if (this.authService.isLoggedIn()) {
+    if (localStorage.userId) {
       this.getOpen(localStorage.userId).subscribe(res => this.openLists = res);
       this.getDone(localStorage.userId).subscribe(res => this.doneLists = res);
     }
@@ -45,6 +43,11 @@ export class ShoppingListService {
 
   getAll(): Observable<Array<ShoppingList>> {
     return this.http.get(`${this.api}/shoppingLists`).pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
+  save($list:ShoppingList): Observable<any> {
+    return this.http.post(`${this.api}/shoppingList`, $list).pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
 

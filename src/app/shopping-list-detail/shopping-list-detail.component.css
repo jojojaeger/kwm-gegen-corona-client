@@ -1,0 +1,19 @@
+.ui.container {
+  padding: 50px 130px;
+  margin: 0 !important;
+  background-color: cadetblue;
+  height: 100vh;
+  color: white;
+}
+
+.ui textarea {
+  height: unset
+}
+.ui input::-webkit-outer-spin-button,
+.ui input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.ui input[type=number] {
+  -moz-appearance: textfield;
+}

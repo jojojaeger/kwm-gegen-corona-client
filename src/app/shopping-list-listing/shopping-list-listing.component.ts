@@ -5,11 +5,7 @@ import {ShoppingList} from "../shared/shoppingList";
 @Component({
   selector: 'cs-shopping-list-listing',
   templateUrl: './shopping-list-listing.component.html',
-  styles: [`.ui.container{padding: 50px 130px;
-    margin: 0 !important;
-    background-color: cadetblue;
-    height: 100vh;
-    color: white;} .ui.cards > .card{width: 600px;}`]
+  styleUrls: ['./shopping-list-listing.component.css']
 })
 export class ShoppingListListingComponent implements OnInit{
 

@@ -1,5 +1,4 @@
-import {AuthService} from "../shared/auth";
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'cs-home',
@@ -14,7 +13,7 @@ export class HomeComponent{
     return localStorage.first_name;
   }
 
-  isVolunteer(){
+  isVolunteer():boolean{
     return localStorage.role == "volunteer";
   }
 

@@ -1,0 +1,11 @@
+.ui.container {
+  padding: 50px 130px;
+  margin: 0 !important;
+  background-color: cadetblue;
+  height: 100vh;
+  color: white;
+}
+
+.ui.cards > .card {
+  width: 600px;
+}
