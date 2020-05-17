@@ -4,6 +4,7 @@
   background-color: cadetblue;
   height: 100vh;
   color: white;
+  overflow: auto;
 }
 
 .ui textarea {
@@ -16,4 +17,10 @@
 }
 .ui input[type=number] {
   -moz-appearance: textfield;
+}
+
+.commentsContainer{
+  padding: 10px 10px 15px 5px;
+  max-height: 50vh;
+  overflow: auto;
 }

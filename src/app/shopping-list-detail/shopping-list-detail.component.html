@@ -35,7 +35,9 @@
   </div>
   <div class="five wide column">
     <h2> Kommentare </h2>
-    <div *ngFor="let feedback of shoppingList?.feedback" [comment]="feedback" class=" ui comments cs-comment">
+    <div class="commentsContainer">
+      <div *ngFor="let feedback of shoppingList?.feedback" [comment]="feedback" class=" ui comments cs-comment">
+    </div>
     </div>
     <form class="ui reply form">
       <div class="field">

@@ -4,6 +4,7 @@
   background-color: cadetblue;
   height: 100vh;
   color: white;
+  overflow: auto;
 }
 
 .ui.cards > .card {
