@@ -24,7 +24,7 @@ export class JwtInterceptorService
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          console.log("error");
+          console.log(localStorage);
           alert("Invalid login");
         }
       }

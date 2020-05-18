@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit():void{
-    this.shoppingListService.updateDashboard();
+    //this.shoppingListService.updateDashboard();
   }
 
   get username():string{
