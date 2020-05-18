@@ -24,3 +24,8 @@
   max-height: 50vh;
   overflow: auto;
 }
+
+.info{
+  margin-bottom: 2px;
+  color: #ECECEC;
+}

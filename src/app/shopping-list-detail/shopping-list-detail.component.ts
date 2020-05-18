@@ -25,6 +25,7 @@ export class ShoppingListDetailComponent implements OnInit {
   ngOnInit():void {
     this.route.params.subscribe(() => {
       this.getList();
+      this.errors = {};
     });
   }
 
