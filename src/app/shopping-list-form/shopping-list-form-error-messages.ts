@@ -13,6 +13,6 @@ export const ShoppingListErrorMessages = [
   new ErrorMessage('itemDescription', 'required', 'Es muss eine Beschreibung des Artikels angegeben werden'),
   new ErrorMessage('itemPrice', 'min', 'Maximaler Preis kann nur positive Werte annehmen'),
   new ErrorMessage('itemAmount', 'min', 'Stückzahl kann nur positive Werte annehmen'),
-  new ErrorMessage('itemAmount', 'required', 'Stückzahl darf nicht null sein und muss eine ganze Zahl enthalten'),
+  new ErrorMessage('itemAmount', 'required', 'Stückzahl darf nicht null sein und muss eine ganze positive Zahl enthalten'),
   new ErrorMessage('itemPrice', 'required', 'Es muss ein maximaler Preis in Form einer Zahl angegeben werden'),
 ];
