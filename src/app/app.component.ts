@@ -8,13 +8,9 @@ import {ShoppingListService} from "./shared/shopping-list.service";
   templateUrl:'./app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 
   constructor(private router: Router, public shoppingListService:ShoppingListService, private authService:AuthService){
-  }
-
-  ngOnInit():void{
-    //this.shoppingListService.updateDashboard();
   }
 
   get username():string{
